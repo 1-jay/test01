@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .choices {
+      margin-top: 20px;
+    }
+    
+    .choices button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 5px;
+    }
+    
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+  
+  <div class="choices">
+    <button onclick="play('rock')">Rock</button>
+    <button onclick="play('paper')">Paper</button>
+    <button onclick="play('scissors')">Scissors</button>
+  </div>
+  
+  <div id="result"></div>
+  
+  <script>
+    function play(userChoice) {
+      var choices = ['rock', 'paper', 'scissors'];
+      var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+      
+      var result;
+      
+      if (userChoice === computerChoice) {
+        result = "It's a tie!";
+      } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = "You win!";
+      } else {
+        result = "You lose!";
+      }
+      
+      document.getElementById("result").innerHTML = "Your choice: " + userChoice + "<br>Computer's choice: " + computerChoice + "<br><br>" + result;
+    }
+  </script>
+</body>
+</html>
