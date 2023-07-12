@@ -64,3 +64,96 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .choices {
+      margin-top: 20px;
+    }
+    
+    .choices button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 5px;
+    }
+    
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    #play-again {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors</h1>
+  
+  <div class="choices">
+    <button onclick="play('rock')">Rock</button>
+    <button onclick="play('paper')">Paper</button>
+    <button onclick="play('scissors')">Scissors</button>
+  </div>
+  
+  <div id="result"></div>
+  
+  <div id="play-again">
+    <button onclick="reset()">Play Again</button>
+  </div>
+  
+  <script>
+    var taunts = [
+      "Nice try!",
+      "Better luck next time!",
+      "You can't beat me!",
+      "I'm unbeatable!",
+      "You're no match for my skills!"
+    ];
+    
+    var resultText = document.getElementById("result");
+    var playAgainBtn = document.getElementById("play-again");
+    
+    function play(userChoice) {
+      var choices = ['rock', 'paper', 'scissors'];
+      var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+      
+      var result;
+      
+      if (userChoice === computerChoice) {
+        result = "It's a tie!";
+      } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = "You win!";
+      } else {
+        result = "You lose!";
+      }
+      
+      var taunt = taunts[Math.floor(Math.random() * taunts.length)];
+      resultText.innerHTML = "Your choice: " + userChoice + "<br>Computer's choice: " + computerChoice + "<br><br>" + result + "<br>" + taunt;
+      
+      playAgainBtn.style.display = "block";
+    }
+    
+    function reset() {
+      resultText.innerHTML = "";
+      playAgainBtn.style.display = "none";
+    }
+  </script>
+</body>
+</html>
